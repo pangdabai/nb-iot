@@ -10,7 +10,7 @@
 
 static int handle = -1;
 static void *readerTask(void *arg) {
-	uint8_t buf[1024];
+	uint8_t buf[2048];
 	int len = 0;
 	while (true) {
 		len = read(handle, buf, sizeof(buf));
@@ -37,7 +37,7 @@ int main(int argc, char *argv[]) {
 	unsigned long h;
 	pthread_create(&h, NULL, readerTask, NULL);
 
-	char cmd[1024];
+	char cmd[2048];
 	while (true) {
 		scanf("%s", cmd);
 		write(handle, cmd, strlen(cmd));
